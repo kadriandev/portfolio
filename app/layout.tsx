@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import "./globals.css";
+import { ThemeProvider } from "@/components/theme-provider";
+import { ThemeToggle } from '@/components/theme-toggle';
+import "@/styles/globals.css";
+import { Button } from "@/components/ui/button";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -15,14 +18,36 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <html lang="en">
+        <html lang="en" suppressHydrationWarning>
+            <head />
             <body className={inter.className}>
-                <header>
-                    <ul>
-                        <li>Home</li>
-                    </ul>
-                </header>
-                {children}
+                <ThemeProvider
+                    attribute="class"
+                    defaultTheme="dark"
+                    enableSystem
+                    disableTransitionOnChange
+                >
+                    <header className="bg-black z-50 fixed w-full p-3 ">
+                        <div className="flex mx-2">
+                            <div className="flex gap-8 align-middle items-center">
+                                <a href="#">
+                                    <div className="p-2 rounded-md bg-gradient-to-r from-violet-500 to-teal-500 text-lg text-black font-bold">
+                                        KadrianDev
+                                    </div>
+                                </a>
+                            </div>
+                            <div className="flex gap-2 align-middle items-center ml-auto">
+                                <a href="#aboutme" className="p-3 rounded hover:bg-gray-800">About Me</a>
+                                <a href="#experience" className="p-3 rounded hover:bg-gray-800">Experience</a>
+                                <a href="#projects" className="p-3 rounded hover:bg-gray-800">Projects</a>
+                                <Button className="mx-2 bg-gradient-to-r from-violet-500 to-teal-500 text-lg hover:from-violet-500/90 hover:to-violet-500/90" >
+                                    Hire Me
+                                </Button>
+                            </div>
+                        </div>
+                    </header>
+                    {children}
+                </ThemeProvider>
             </body>
         </html>
     );
