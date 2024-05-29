@@ -10,6 +10,7 @@ import {
   SheetTrigger,
   SheetClose,
 } from "@/components/ui/sheet";
+import { Toaster } from "@/components/ui/toaster";
 import Particles from "@/components/particles";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -58,12 +59,12 @@ export default function RootLayout({
                     {item.name}
                   </Link>
                 ))}
-                {/* <Link */}
-                {/*   href="/contact" */}
-                {/*   className="px-2 py-1 rounded-md bg-gradient-to-r from-violet-500 to-teal-500 text-lg text-black font-bold" */}
-                {/* > */}
-                {/*   Contact Me */}
-                {/* </Link> */}
+                <Link
+                  href="/contact"
+                  className="px-2 py-1 rounded-md bg-gradient-to-r from-violet-500 to-teal-500 text-lg text-black font-bold"
+                >
+                  Contact Me
+                </Link>
               </ul>
             </nav>
             <nav className="flex w-full m-4 md:hidden items-center justify-between">
@@ -88,11 +89,11 @@ export default function RootLayout({
                       </Link>
                     ))}
 
-                    {/* <Link href="/contact" className="w-full"> */}
-                    {/*   <SheetClose className="p-2 w-full rounded-md bg-gradient-to-r from-violet-500 to-teal-500 text-lg text-black font-bold"> */}
-                    {/*     Contact Me */}
-                    {/*   </SheetClose> */}
-                    {/* </Link> */}
+                    <Link href="/contact" className="w-full">
+                      <SheetClose className="p-2 w-full rounded-md bg-gradient-to-r from-violet-500 to-teal-500 text-lg text-black font-bold">
+                        Contact Me
+                      </SheetClose>
+                    </Link>
                   </ul>
                 </SheetContent>
               </Sheet>
@@ -105,6 +106,7 @@ export default function RootLayout({
               quantity={100}
             />
           </main>
+          <Toaster />
         </ThemeProvider>
       </body>
     </html>
