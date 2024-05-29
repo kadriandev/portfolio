@@ -1,6 +1,8 @@
 import { ContactForm } from "./ContactForm";
 import { sendMail } from "@/lib/actions";
 
+export const runtime = "edge";
+
 export default function ContactPage() {
   return (
     <div className="flex flex-col gap-4 md:w-1/3 mx-auto">
