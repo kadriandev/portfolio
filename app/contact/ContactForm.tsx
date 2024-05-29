@@ -45,7 +45,7 @@ export function ContactForm({ sendMailAction }: ContactFormProps) {
       email: "",
       message: "",
     },
-    mode: "onChange",
+    mode: "onSubmit",
   });
 
   async function handleSubmit(values: ContactFormFields) {
