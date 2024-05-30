@@ -51,12 +51,13 @@ export function ContactForm({ sendMailAction }: ContactFormProps) {
   async function handleSubmit(values: ContactFormFields) {
     setPending(true);
     return sendMailAction(values)
-      .then(() =>
+      .then(() => {
         toast({
           title: "Email Sent Successfully!",
           description: "I'll get back to you shortly",
-        }),
-      )
+        });
+        form.reset();
+      })
       .catch(() =>
         toast({
           title: "Error sending email.",
