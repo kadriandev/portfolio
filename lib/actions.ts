@@ -2,10 +2,14 @@ import { ContactFormFields } from "@/app/contact/ContactForm";
 import nodemailer from "nodemailer";
 import Mail from "nodemailer/lib/mailer";
 
-export async function sendMail({ name, email, message }: ContactFormFields) {
+export async function sendMail({
+  name,
+  email,
+  message,
+  company = "",
+}: ContactFormFields) {
   "use server";
 
-  console.log(process.env.MY_EMAIL);
   const transport = nodemailer.createTransport({
     service: "gmail",
     auth: {
@@ -22,8 +26,9 @@ export async function sendMail({ name, email, message }: ContactFormFields) {
     text: message?.toString(),
   };
 
-  return new Promise<string>((resolve, reject) => {
-    transport.sendMail(mailOptions, function (err) {
+  return new Promise<string>(async (resolve, reject) => {
+    // Send message
+    transport.sendMail(mailOptions, async (err) => {
       if (!err) {
         resolve("Email sent");
       } else {
