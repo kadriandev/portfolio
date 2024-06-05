@@ -53,25 +53,22 @@ export function ContactForm({ sendMailAction }: ContactFormProps) {
 
   async function handleSubmit(values: ContactFormFields) {
     setPending(true);
-    const res = await sendMailAction(values);
-    console.log(res);
-    // .then((res) => {
-    //   console.log(res);
-    //   toast({
-    //     title: "Email Sent Successfully!",
-    //     description: "I'll get back to you shortly",
-    //   });
-    //   form.reset();
-    // })
-    // .catch((err) => {
-    //   console.log(err);
-    //   toast({
-    //     title: "Error sending email!!!",
-    //     description:
-    //       "You can also reach out to me at kyle.monteiro@gmail.com",
-    //   });
-    // })
-    // .finally(() => setPending(false));
+    sendMailAction(values)
+      .then(() => {
+        toast({
+          title: "Email Sent Successfully!",
+          description: "I'll get back to you shortly",
+        });
+        form.reset();
+      })
+      .catch(() => {
+        toast({
+          title: "Error sending email!!!",
+          description:
+            "You can also reach out to me at kyle.monteiro@gmail.com",
+        });
+      })
+      .finally(() => setPending(false));
   }
 
   return (
