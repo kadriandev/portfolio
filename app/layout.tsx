@@ -2,16 +2,10 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
 import "@/styles/globals.css";
-import Link from "next/link";
-import { Menu } from "lucide-react";
-import {
-  Sheet,
-  SheetContent,
-  SheetTrigger,
-  SheetClose,
-} from "@/components/ui/sheet";
 import { Toaster } from "@/components/ui/toaster";
 import Particles from "@/components/particles";
+import NavBar from "./navbar";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -25,12 +19,6 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const navigation = [
-    { name: "Home", href: "/" },
-    { name: "Work", href: "/work" },
-    { name: "Projects", href: "/projects" },
-  ];
-
   return (
     <html lang="en" suppressHydrationWarning>
       <head />
@@ -42,65 +30,12 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <header className="fixed flex align-middle justify-end md:justify-center w-full z-50 bg-black">
-            <nav className="py-6 animate-fade-in hidden md:flex">
-              <ul className="flex items-center justify-center align-middle gap-8">
-                <Link
-                  href={"/"}
-                  className="font-bold text-lg text-white duration-500 hover:text-zinc-300"
-                >
-                  kadriandev
-                </Link>
-                {navigation.map((item) => (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    className="text-md duration-500 text-zinc-500 hover:text-zinc-300"
-                  >
-                    {item.name}
-                  </Link>
-                ))}
-                <Link
-                  href="/contact"
-                  className="px-2 py-1 rounded-md bg-gradient-to-r from-violet-500 to-teal-500 text-lg text-black font-bold"
-                >
-                  Contact Me
-                </Link>
-              </ul>
-            </nav>
-            <nav className="flex w-full m-4 md:hidden items-center justify-between">
-              <Link href={"/"} className="font-bold">
-                kadriandev
-              </Link>
-              <Sheet>
-                <SheetTrigger className="flex m-2 self-end">
-                  <Menu />
-                </SheetTrigger>
-                <SheetContent className="flex flex-col">
-                  <ul className="flex flex-col gap-10 pt-16">
-                    {navigation.map((item) => (
-                      <Link
-                        key={item.href}
-                        href={item.href}
-                        className="py-2 text-md duration-500 text-zinc-500 hover:text-zinc-300 hover:bg-zinc-700"
-                      >
-                        <SheetClose className="w-full text-md duration-500 text-zinc-500 hover:text-zinc-300">
-                          {item.name}
-                        </SheetClose>
-                      </Link>
-                    ))}
-
-                    <Link href="/contact" className="w-full">
-                      <SheetClose className="p-2 w-full rounded-md bg-gradient-to-r from-violet-500 to-teal-500 text-lg text-black font-bold">
-                        Contact Me
-                      </SheetClose>
-                    </Link>
-                  </ul>
-                </SheetContent>
-              </Sheet>
-            </nav>
+            <NavBar />
           </header>
-          <main className="flex h-screen flex-col pt-10 md:pt-20">
-            <div className="pt-14 px-4 md:px-14 h-full w-full">{children}</div>
+          <main className="flex h-screen flex-col pt-10 md:pt-10">
+            <div className="pt-14 md:pt-0 px-4 md:px-14 h-full w-full">
+              {children}
+            </div>
             <Particles
               className="absolute h-full inset-0 -z-10 animate-fade-in"
               quantity={100}
@@ -108,6 +43,7 @@ export default function RootLayout({
           </main>
           <Toaster />
         </ThemeProvider>
+        <SpeedInsights />
       </body>
     </html>
   );

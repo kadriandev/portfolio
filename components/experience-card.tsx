@@ -68,11 +68,22 @@ export function ExperienceCard({
               width={600}
               height={300}
             />
-            <div className="p-4 mt-6">
+            <div className="mt-6">
               <CardTitle className="mb-2">{jobTitle}</CardTitle>
               <CardDescription>{`${getDate(from)} - ${getDate(
                 to,
               )}`}</CardDescription>
+            </div>
+
+            <div className="pt-2 md:my-0">
+              {skills.slice(0, 4).map((s) => (
+                <Badge
+                  key={s}
+                  className="m-1 bg-transparent border-white text-white hover:none"
+                >
+                  {s}
+                </Badge>
+              ))}
             </div>
           </CardContent>
         </Card>

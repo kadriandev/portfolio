@@ -1,11 +1,16 @@
 import { ContactFormFields } from "@/app/contact/ContactForm";
 import nodemailer from "nodemailer";
 import Mail from "nodemailer/lib/mailer";
+import supabase from "./supabase/server";
 
-export async function sendMail({ name, email, message }: ContactFormFields) {
+export async function sendMail({
+  name,
+  email,
+  company = "",
+  message,
+}: ContactFormFields) {
   "use server";
 
-  console.log(process.env.MY_EMAIL);
   const transport = nodemailer.createTransport({
     service: "gmail",
     auth: {
@@ -22,13 +27,43 @@ export async function sendMail({ name, email, message }: ContactFormFields) {
     text: message?.toString(),
   };
 
-  return new Promise<string>((resolve, reject) => {
-    transport.sendMail(mailOptions, function (err) {
-      if (!err) {
-        resolve("Email sent");
-      } else {
-        reject(err.message);
+  return new Promise<string>(async (resolve, reject) => {
+    try {
+      // Does contact already exist
+      const exists = await supabase
+        .from("contacts")
+        .select()
+        .eq("email", email);
+      console.log("exists " + JSON.stringify(exists));
+      if (true && exists.data && exists.data?.length > 0) {
+        return { error: "Whoa slow down, give me a chance to respond." };
       }
-    });
+
+      // Insert contact into db
+      const { data, error } = await supabase
+        .from("contacts")
+        .insert({
+          name,
+          email,
+          company,
+        })
+        .select();
+
+      if (error) {
+        return { error: "Couldn't insert contact" };
+        return;
+      }
+    } catch (e) {
+      console.log("Error supabase");
+    }
+
+    // Send message
+    // transport.sendMail(mailOptions, async (err) => {
+    //   if (!err) {
+    //     resolve("Email sent");
+    //   } else {
+    //     reject(err.message);
+    //   }
+    // });
   });
 }

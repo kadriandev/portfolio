@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
+  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -22,6 +23,7 @@ const formSchema = z.object({
   email: z
     .string()
     .email({ message: "Use a real email so I can get back in touch." }),
+  company: z.string().optional(),
   message: z
     .string()
     .min(20, { message: "Is that all? Try saying a little more." }),
@@ -43,6 +45,7 @@ export function ContactForm({ sendMailAction }: ContactFormProps) {
     defaultValues: {
       name: "",
       email: "",
+      company: "",
       message: "",
     },
     mode: "onSubmit",
@@ -50,22 +53,25 @@ export function ContactForm({ sendMailAction }: ContactFormProps) {
 
   async function handleSubmit(values: ContactFormFields) {
     setPending(true);
-    return sendMailAction(values)
-      .then(() => {
-        toast({
-          title: "Email Sent Successfully!",
-          description: "I'll get back to you shortly",
-        });
-        form.reset();
-      })
-      .catch(() =>
-        toast({
-          title: "Error sending email.",
-          description:
-            "You can also reach out to me at kyle.monteiro@gmail.com",
-        }),
-      )
-      .finally(() => setPending(false));
+    const res = await sendMailAction(values);
+    console.log(res);
+    // .then((res) => {
+    //   console.log(res);
+    //   toast({
+    //     title: "Email Sent Successfully!",
+    //     description: "I'll get back to you shortly",
+    //   });
+    //   form.reset();
+    // })
+    // .catch((err) => {
+    //   console.log(err);
+    //   toast({
+    //     title: "Error sending email!!!",
+    //     description:
+    //       "You can also reach out to me at kyle.monteiro@gmail.com",
+    //   });
+    // })
+    // .finally(() => setPending(false));
   }
 
   return (
@@ -96,6 +102,20 @@ export function ContactForm({ sendMailAction }: ContactFormProps) {
               <FormControl>
                 <Input placeholder="Kyle Monteiro" {...field} />
               </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="company"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Company</FormLabel>
+              <FormControl>
+                <Input placeholder="" {...field} />
+              </FormControl>
+              <FormDescription>Optional</FormDescription>
               <FormMessage />
             </FormItem>
           )}
