@@ -1,4 +1,5 @@
 import BlogPostCard from "@/components/blog-post-card";
+import { Metadata } from "next/types";
 import { getPosts } from "@/lib/contentful";
 
 export const metadata: Metadata = {
