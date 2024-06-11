@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 
 export default function ProjectsPage() {
   return (
-    <div className="grid md:grid-cols-3 gap-8 md:mt-32">
+    <div className="flex flex-wrap justify-center gap-4">
       <GithubRepoCard repo="kadriandev/portfolio" />
       <GithubRepoCard repo="kadriandev/dotfiles" />
       <GithubRepoCard repo="kadriandev/emailserver" />

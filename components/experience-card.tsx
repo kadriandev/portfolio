@@ -62,7 +62,7 @@ export function ExperienceCard({
         >
           <CardContent className="p-0">
             <Image
-              className="rounded-t-2xl h-[175px]"
+              className="rounded-t-2xl h-[175px] bg-white"
               src={imageSrc}
               alt={`${company} Logo`}
               width={600}
@@ -92,7 +92,7 @@ export function ExperienceCard({
         <div className="md:mx-auto w-full max-w-full">
           <DrawerHeader>
             <Image
-              className="rounded-2xl mb-4 w-full"
+              className="rounded-2xl mb-4 w-full bg-white"
               src={imageSrc}
               alt={`${company} Logo`}
               width={500}
@@ -106,7 +106,7 @@ export function ExperienceCard({
           <div className={"md:px-3 md:grid md:grid-cols-[3fr_1fr] md:gap-x-8"}>
             <h2 className="font-semibold mb-4 hidden md:block">Description</h2>
             <h2 className="font-semibold mb-4 hidden md:block">Skills</h2>
-            <div className="my-2 md:my-0 block md:hidden">
+            <div className="my-2 px-4 md:my-0 block md:hidden">
               {skills.map((s) => (
                 <Badge
                   key={s}
@@ -116,7 +116,7 @@ export function ExperienceCard({
                 </Badge>
               ))}
             </div>
-            <div className={"[&>*]:mb-4 text-white"}>{children}</div>
+            <div className={"px-4 [&>*]:mb-4 text-white"}>{children}</div>
             <div className="my-2 md:my-0 hidden md:block">
               {skills.map((s) => (
                 <Badge

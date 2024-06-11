@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 
 export default function ExperiencePage() {
   return (
-    <div className={`flex flex-wrap justify-center gap-8 md:mt-32`}>
+    <div className={`flex flex-wrap justify-center gap-8`}>
       <ExperienceCard
         company={"407 ETR"}
         address={"Woodbridge, Canada"}
@@ -61,7 +61,7 @@ export default function ExperiencePage() {
       <ExperienceCard
         company={"Kenna"}
         address={"Mississauga, Canada"}
-        imageSrc={"/kenna_logo2.jpeg"}
+        imageSrc={"/kenna-black.svg"}
         jobTitle={"Full Stack Developer"}
         from={new Date("January 2021")}
         to={new Date("August 2021")}

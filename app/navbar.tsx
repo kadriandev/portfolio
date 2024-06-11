@@ -18,6 +18,7 @@ export default function NavBar() {
     { name: "Home", href: "/" },
     { name: "Work", href: "/work" },
     { name: "Projects", href: "/projects" },
+    { name: "Blog", href: "/blog" },
     { name: "Contact Me", href: "/contact" },
   ];
 
@@ -48,9 +49,12 @@ export default function NavBar() {
       </nav>
 
       <nav className="flex w-full m-1 md:hidden items-center justify-between">
-        <Link href={"/"} className="font-bold ml-2">
-          kadriandev
-        </Link>
+        <span>
+          <Link href={"/"} className="font-bold ml-2">
+            kadriandev
+          </Link>
+          <span>{pathname !== "/" && pathname}</span>
+        </span>
         <Sheet>
           <SheetTrigger className="flex m-2 self-end">
             <Menu />

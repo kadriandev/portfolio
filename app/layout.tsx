@@ -33,7 +33,7 @@ export default function RootLayout({
             <NavBar />
           </header>
           <main className="flex h-screen flex-col pt-10 md:pt-10">
-            <div className="pt-14 md:pt-0 px-4 md:px-14 h-full w-full">
+            <div className="py-8 md:pt-0 px-4 md:px-14 h-full w-full md:mt-32">
               {children}
             </div>
             <Particles
