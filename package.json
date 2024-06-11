@@ -9,7 +9,6 @@
         "lint": "next lint"
     },
     "dependencies": {
-        "@contentful/rich-text-html-renderer": "^16.5.2",
         "@contentful/rich-text-react-renderer": "^15.21.2",
         "@contentful/rich-text-types": "^16.5.2",
         "@hookform/resolvers": "^3.4.2",
@@ -18,8 +17,6 @@
         "@radix-ui/react-label": "^2.0.2",
         "@radix-ui/react-slot": "^1.0.2",
         "@radix-ui/react-toast": "^1.1.5",
-        "@supabase/ssr": "^0.3.0",
-        "@supabase/supabase-js": "^2.43.4",
         "@types/nodemailer": "^6.4.15",
         "@vercel/speed-insights": "^1.0.11",
         "class-variance-authority": "^0.7.0",
@@ -28,8 +25,6 @@
         "lucide-react": "^0.356.0",
         "next": "14.2.3",
         "next-themes": "^0.2.1",
-        "nextra": "^2.13.4",
-        "nextra-theme-blog": "^2.13.4",
         "nodemailer": "^6.9.13",
         "react": "^18",
         "react-dom": "^18",
