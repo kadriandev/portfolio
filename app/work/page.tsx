@@ -13,7 +13,7 @@ export default function ExperiencePage() {
         company={"407 ETR"}
         address={"Woodbridge, Canada"}
         imageSrc={"/407_logo.jpg"}
-        jobTitle={"Senior Full Stack Developer"}
+        jobTitle={"Full Stack Developer"}
         from={new Date("July 2023")}
         to={new Date()}
         skills={["React", "Node.js", "SQL", "Docker", "Kubernetes"]}
